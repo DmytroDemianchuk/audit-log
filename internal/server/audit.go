@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+
 	audit "github.com/dmytrodemianchuk/audit-log/pkg/domain"
 )
 
@@ -22,5 +23,5 @@ func NewAuditServer(service AuditService) *AuditServer {
 func (h *AuditServer) Log(ctx context.Context, req *audit.LogRequest) (*audit.Empty, error) {
 	err := h.service.Insert(ctx, req)
 
-	return *audit.Empty{}
+	return &audit.Empty{}, err
 }
