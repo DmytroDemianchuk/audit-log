@@ -25,8 +25,5 @@ source .env && go build -o app cmd/main.go && ./app
 Для mongo можно использовать Docker
 
 ```
-docker run --rm -d --name audit-log-mongo \
-> -e MONGO_INITDB_ROOT_USERNAME=admin \
-> -e MONGO_INITDB_ROOT_PASSWORD=g0langn1nja \
-> -p 27017:27017 mongo:latest
+docker run --rm -d --name audit-log-mongo -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=g0langn1nja -p 27017:27017 mongo:latest
 ```
