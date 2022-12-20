@@ -2,13 +2,15 @@ package server
 
 import (
 	"fmt"
-	audit "github.com/dmytrodemianchuk/audit-log/pkg/domain"
 	"net"
+
+	audit "github.com/dmytrodemianchuk/audit-log/pkg/domain"
+	"google.golang.org/grpc"
 )
 
 type Server struct {
-	grpcSrv *grpc.Server
-	audit   audit.AuditServiceServer
+	grpcSrv     *grpc.Server
+	auditServer audit.AuditServiceServer
 }
 
 func New(auditServer audit.AuditServiceServer) *Server {
@@ -28,7 +30,7 @@ func (s *Server) ListenAndServe(port int) error {
 
 	audit.RegisterAuditServiceServer(s.grpcSrv, s.auditServer)
 
-	if err := s.gprcSrv.Serve(lis); err != nil {
+	if err := s.grpcSrv.Serve(lis); err != nil {
 		return err
 	}
 

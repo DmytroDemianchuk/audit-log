@@ -3,13 +3,13 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/dmtrodemianchuk/audit-log/internal/config"
-	"github.com/dmtrodemianchuk/audit-log/internal/repository"
-	"github.com/dmtrodemianchuk/audit-log/internal/server"
-	"github.com/dmtrodemianchuk/audit-log/internal/service"
 	"log"
 	"time"
 
+	"github.com/dmytrodemianchuk/audit-log/internal/config"
+	"github.com/dmytrodemianchuk/audit-log/internal/repository"
+	"github.com/dmytrodemianchuk/audit-log/internal/server"
+	"github.com/dmytrodemianchuk/audit-log/internal/service"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -23,8 +23,8 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	opts := options.client()
-	opts.SetAuth(options.Cradential{
+	opts := options.Client()
+	opts.SetAuth(options.Credential{
 		Username: cfg.DB.Username,
 		Password: cfg.DB.Password,
 	})
